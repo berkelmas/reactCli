@@ -1,0 +1,8 @@
+import React from "react";
+import st from "{% stylesheetPath %}";
+
+const {% name %}: React.FC = () => {
+  return <div></div>;
+};
+
+export default {% name %};
