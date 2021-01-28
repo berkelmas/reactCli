@@ -8,15 +8,18 @@ import capitalizeCamelCase from "./utility/CapitalizeCamelCase";
 const getTemplate = (fileType: ".js" | ".tsx"): string => {
   if (fileType === ".js") {
     return fs
-      .readFileSync("./templates/functional-template", {
+      .readFileSync(path.join(__dirname, "./templates/functional-template"), {
         encoding: "utf-8",
       })
       .toString();
   } else {
     return fs
-      .readFileSync("./templates/functional-template-typescript", {
-        encoding: "utf-8",
-      })
+      .readFileSync(
+        path.join(__dirname, "./templates/functional-template-typescript"),
+        {
+          encoding: "utf-8",
+        }
+      )
       .toString();
   }
 };
@@ -61,7 +64,7 @@ const argv = yargs
     },
     function (argv) {
       createComponent(
-        argv.path as string,
+        path.join(process.cwd(), argv.path as string),
         argv.stylesheetprocessor as "css" | "scss" | "less",
         argv.stylesheet as "module" | "normal"
       );

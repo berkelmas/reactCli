@@ -24,20 +24,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const yargs_1 = __importDefault(require("yargs"));
 const fs = __importStar(require("fs"));
+const path = __importStar(require("path"));
 const parse_filepath_1 = __importDefault(require("parse-filepath"));
 const ensureDirectoryExistance_1 = __importDefault(require("./utility/ensureDirectoryExistance"));
 const CapitalizeCamelCase_1 = __importDefault(require("./utility/CapitalizeCamelCase"));
 const getTemplate = (fileType) => {
     if (fileType === ".js") {
         return fs
-            .readFileSync("./templates/functional-template", {
+            .readFileSync(path.join(__dirname, "./templates/functional-template"), {
             encoding: "utf-8",
         })
             .toString();
     }
     else {
         return fs
-            .readFileSync("./templates/functional-template-typescript", {
+            .readFileSync(path.join(__dirname, "./templates/functional-template-typescript"), {
             encoding: "utf-8",
         })
             .toString();
@@ -68,7 +69,7 @@ const argv = yargs_1.default
         describe: "filepath to create",
     });
 }, function (argv) {
-    createComponent(argv.path, argv.stylesheetprocessor, argv.stylesheet);
+    createComponent(path.join(process.cwd(), argv.path), argv.stylesheetprocessor, argv.stylesheet);
 })
     .alias("s", "stylesheet")
     .describe("s", "choose stylesheet type")

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc --watch",
+    "build": "cp -R ./templates ./build/templates && tsc --watch",
     "start": "node ./build/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
